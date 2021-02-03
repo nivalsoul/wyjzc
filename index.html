@@ -7,11 +7,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
+  <!-- 支持 LaTex 语言 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
+  <link rel="stylesheet" href="https://wugenqiang.js.org/src/css/iconfont.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nivalsoul/wyjzc/plugin/custom.css">
+  <!-- alert -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nivalsoul/wyjzc/plugin/sweetalert.min.css" type='text/css' media='all' />
+  <!-- 友链 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nivalsoul/wyjzc/plugin/css/friends-link.css">
+  <!-- 自定义特色样式：by myself -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nivalsoul/wyjzc/plugin/css/me.css">
+
 </head>
 <body>
 	<div id="app">
-	🏃‍🏃‍🏃‍💨 加载中...
+	    🏃‍🏃‍🏃‍💨 加载中...
 	</div>
 	<script>
 	window.$docsify = {
@@ -39,8 +51,8 @@
 			maxAge: 86400000, // 过期时间，单位毫秒，默认一天
 		},//添加搜索框
 		footer: {
-			copy: '<div class = "over" >完结</div><br/><span>我能想到最浪漫的事，就是我喝咖啡你付钱~😆😏 ❤️ 打赏地址：<a href="xxx" target="_blank">xxx</a></span><iframe src="xxx" style="overflow-x:hidden;overflow-y:hidden; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe><br/><span id="sitetime"></span><br/><span>Copyright &copy; 2021 - 至今</span>',
-			auth: ' <a href="https://nivalsoul.github.io/wyjzc" target="_blank">无一技之长</a> <span> 多少事，从来急，天地转，光阴迫，一万年太久，只争朝夕。 ！</span>',
+			copy: '<div class = "over" >完结</div><br/><span>我能想到最浪漫的事，就是我喝咖啡你付钱~😆😏 ❤️ 打赏地址：<a href="xxx" target="_blank">xxx</a></span><div style="padding:5px"><img src="images/pay/wechat-pay.png" width="200" height="200" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/pay/alipay-pay.jpg" width="200" height="200" /></div><br/><span id="sitetime"></span><br/><span>Copyright &copy; 2021 - 至今</span>',
+			auth: ' <a href="https://nivalsoul.github.io/wyjzc" target="_blank">无一技之长</a> <span> 多少事，从来急，天地转，光阴迫，一万年太久，只争朝夕。 </span>',
 			pre: '<hr/>',
 			style: 'text-align: left;',
 		},//添加页脚
@@ -154,7 +166,7 @@
 	<!--使用 Gitter 实现一个 IM 即时通讯聊天室功能-->
 	<script>
 	((window.gitter = {}).chat = {}).options = {
-		room: 'enjoytoshare/community'
+		room: 'wyjzc/community'
 	};
 	</script>
 	<script src="https://cdn.jsdelivr.net/gh/nivalsoul/wyjzc/plugin/sidecar.v1.js" async defer></script>
