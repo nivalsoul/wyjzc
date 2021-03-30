@@ -112,6 +112,7 @@ ntile(n) over(partition by x order by y)：用于将分组数据按照顺序切�
 
 # hbase
 ## 存储结构
+https://zhuanlan.zhihu.com/p/111606398
 
 ## rowkey设计原则
 - Rowkey的长度原则
@@ -122,6 +123,18 @@ ntile(n) over(partition by x order by y)：用于将分组数据按照顺序切�
 - Reverse反转：针对固定长度的Rowkey反转后存储，这样可以使Rowkey中经常改变的部分放在最前面，可以有效的随机Rowkey。
 - Salt加盐：Salt是将每一个Rowkey加一个前缀，前缀使用一些随机字符，使得数据分散在多个不同的Region，达到Region负载均衡的目标。
 - Hash散列或者Mod：用Hash散列来替代随机Salt前缀的好处是能让一个给定的行有相同的前缀，这在分散了Region负载的同时，使读操作也能够推断。
+
+**RowKey和ColumnFamily设计问题**
+- 1. RowKey决定了行操作任务进入RegionServer的数量，我们应该尽量的让一次操作调用更多的Region Server，已达到分布式的目的。
+- 2. RowKey决定了查询读取连续磁盘块的数量，最理想的情况是一次查询，在每个Region Server上，只读取一个磁盘块。
+- 3. ColumnFamily决定了一次查询需要读取的文件数（不同的文件不仅意味着分散的磁盘块，还意味着多次的文件打开关闭操作）。我们应尽量将希望查询的结果集合并到一个- ColumnFamily中。同时尽量去除该ColumnFamily中不需要的列。也就是说ColumnFamily由查询结果决定。
+- 4. HBase官方建议尽量的减少ColumnFamily的数量。
+
+
+## hbase region定位
+根据rowkey构造scan查询，从hbase:meta表中反向查找STARTROW，找到第一条数据
+1.https://datamining.blog.csdn.net/article/details/102983802
+2.http://cxy7.com/articles/2018/07/08/1531054620618.html
 
 
 # spark
@@ -217,7 +230,7 @@ spark中的共享变量有：累加器、广播变量
 - 可以通过SQL或DataSet API方式同Spark SQL进行交互
 
 ### Spark SQL架构图
-![avatar](https://img-blog.csdnimg.cn/20191015082539972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NzEwOTAw,size_16,color_FFFFFF,t_70)
+![avatar]([images/article/sparkSQL.png](https://img-blog.csdnimg.cn/20191015082539972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NzEwOTAw,size_16,color_FFFFFF,t_70))
 
 ## Spark Streaming
 SparkStreaming是一套框架。
